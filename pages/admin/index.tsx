@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,11 +12,26 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // 在这里处理登录逻辑
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      console.log(response);
+      
+    } catch (error) {
+      console.error(error);
+    }
+
     console.log('Email:', email);
     console.log('Password:', password);
+
   };
 
   return (
@@ -61,11 +76,8 @@ const Login = () => {
   );
 };
 
-
-
-
-const AdminIndex = (props)=>{
-  return (<Login/>)
+const AdminIndex = (props) => {
+  return (<Login />)
 }
 
 

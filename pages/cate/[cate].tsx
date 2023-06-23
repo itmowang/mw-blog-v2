@@ -24,8 +24,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const offset = (Number(page) - 1) * Number(limit);
     const feed = await prisma.post.findMany(
         {
-            where:{
-                categoryId: parseInt(query.cate as string) 
+            where: {
+                categoryId: parseInt(query.cate as string)
             },
             orderBy: { createdAt: 'desc' },
             skip: offset,
