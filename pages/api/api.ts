@@ -1,5 +1,5 @@
 // 载入prisma设置
-import prisma from '../lib/prisma'
+import prisma from '../../lib/prisma'
 export const getCommonData = async () => {
   const categories = await prisma.category.findMany();
   const latestPosts = await prisma.post.findMany({

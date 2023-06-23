@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 // 引用footer
 import Footer from '../../components/Footer'
 // 引用api 
-import { getCommonData } from '../../api/api' 
+import { getCommonData } from '../api/api' 
 
 import { LeftUserInfo, ContactInfo, RecentPosts, SiteInfo } from '../../components/Layout';
 

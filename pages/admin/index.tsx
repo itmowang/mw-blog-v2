@@ -15,23 +15,25 @@ const Login: React.FC = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // 在这里处理登录逻辑
-    try {
-      const response = await fetch('/api/login', {
+    if (!email || !password) {
+      alert("请输入邮箱和密码！")
+    } else {
+      const res = await fetch('/api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      console.log(response);
-      
-    } catch (error) {
-      console.error(error);
+      if (res.status === 200) {
+        const post = await res.json();
+        if(post.success){
+          alert("登录成功！")
+          // 记录缓存已经登录信息
+          localStorage.setItem('token', post.token);
+        }else{
+          alert(post.message || "登录失败！")
+        }
+      }
     }
-
-    console.log('Email:', email);
-    console.log('Password:', password);
-
   };
 
   return (

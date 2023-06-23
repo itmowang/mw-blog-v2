@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination';
 // 其他
 import { LeftUserInfo, ContactInfo, RecentPosts, SiteInfo } from '../components/Layout';
 // 引用api 
-import { getCommonData } from '../api/api'
+import { getCommonData } from './api/api'
 // 引用router
 import { useRouter } from 'next/router';
 
