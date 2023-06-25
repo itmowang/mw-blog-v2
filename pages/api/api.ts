@@ -26,28 +26,11 @@ export const getCommonData = async () => {
 };
 
 
-// 登录
-// Path: api\api.ts
-export const login = async (email: string, password: string) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  } as any);
-  if (!user) {
-    return {
-      success: false,
-      message: '用户不存在',
-    };
-  }
-  if (user.password !== password) {
-    return {
-      success: false,
-      message: '密码错误',
-    };
-  }
-  return {
-    success: true,
-    message: '登录成功',
-  };
+// 保存文章到Post
+export const savePost = async (post) => {
+  const newPost = await prisma.post.create({
+    title: post.title,
+    content: post.content,
+  });
+  return newPost;
 }

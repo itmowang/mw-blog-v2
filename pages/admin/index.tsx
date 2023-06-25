@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import jwt from 'jsonwebtoken'
+// 引用router
+import { useRouter } from 'next/router';
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -25,11 +29,15 @@ const Login: React.FC = () => {
       });
       if (res.status === 200) {
         const post = await res.json();
-        if(post.success){
+        if (post.success) {
+          console.log(post);
           alert("登录成功！")
+          const tokenPayload = { email: email };
+          const token = jwt.sign(tokenPayload, "secret"); // 生成 token
+          localStorage.setItem("token", token);
           // 记录缓存已经登录信息
-          localStorage.setItem('token', post.token);
-        }else{
+          router.push('/admin/manage');
+        } else {
           alert(post.message || "登录失败！")
         }
       }
