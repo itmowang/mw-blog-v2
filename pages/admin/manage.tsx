@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+
 
 const AdminPage: React.FC = (props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
+  const router = useRouter(); 
+  
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -15,11 +18,15 @@ const AdminPage: React.FC = (props) => {
   const handleAddArticle = () => {
     // 处理新增文章逻辑
     console.log('新增文章:', title, content);
+    // 跳转
+    router.push('/admin/edit?isedit=add');
   };
 
   const handleEditArticle = () => {
     // 处理修改文章逻辑
     console.log('修改文章:', title, content);
+    // 跳转
+    router.push('/admin/edit?edit=isedit&id=1.');
   };
 
   return (

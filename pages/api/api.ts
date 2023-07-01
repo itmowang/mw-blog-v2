@@ -28,9 +28,7 @@ export const getCommonData = async () => {
 
 // 保存文章到Post
 export const savePost = async (post) => {
-  const newPost = await prisma.post.create({
-    title: post.title,
-    content: post.content,
-  });
-  return newPost;
+  console.log(post)
+  return {};
 }
+
