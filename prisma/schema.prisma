@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:Lg013580724422@sh-cynosdbmysql-grp-ci5f2ppw.sql.tencentcdb.com:20862/blog"
+  url      = "mysql://blog:Lgmwshuai153178!@rm-cn-x0r3b4oz80010o8o.rwlb.rds.aliyuncs.com/blog"
 }
 
 model Post {
@@ -55,3 +55,5 @@ model domains {
   name  String  @unique
   isBuy Boolean
 }
+
+

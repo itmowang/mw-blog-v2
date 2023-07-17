@@ -3,11 +3,13 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 import { useRouter } from 'next/router';
+import axios from "../../utils/fetch"
 
 const CreatePage: React.FC = (props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [cateId, setCateId] = useState('');
+
   // 获取url内参数
   const router = useRouter();
   // 请求接口获取分类数据
@@ -41,17 +43,18 @@ const CreatePage: React.FC = (props) => {
 
   const handleCreate = async () => {
     // 处理创建逻辑
-    const res = await fetch('/api/post/save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: title,
-        content: content,
-        cateId: cateId,
-      }),
-    });
-    console.log(res);
-    
+    const res = await axios.post('/api/post/save', {
+      title: title,
+      content: content,
+      cateId: cateId,
+    })
+    if(res.status == 200 && res.data.success) {
+      alert('创建成功')
+      // 返回文章列表
+      router.push('/admin/manage')
+    }else{
+      alert(res.data.message)
+    }
   };
 
   return (

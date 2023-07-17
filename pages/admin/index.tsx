@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import jwt from 'jsonwebtoken'
 // 引用router
 import { useRouter } from 'next/router';
+// 引用封装
+import axios from '../../utils/fetch';
+
+
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -22,24 +25,16 @@ const Login: React.FC = () => {
     if (!email || !password) {
       alert("请输入邮箱和密码！")
     } else {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      if (res.status === 200) {
-        const post = await res.json();
-        if (post.success) {
-          console.log(post);
-          alert("登录成功！")
-          const tokenPayload = { email: email };
-          const token = jwt.sign(tokenPayload, "secret"); // 生成 token
-          localStorage.setItem("token", token);
-          // 记录缓存已经登录信息
-          router.push('/admin/manage');
-        } else {
-          alert(post.message || "登录失败！")
-        }
+      const res = await axios.post('/api/login', { email, password }) as any;
+      if (res.data.success) {
+        console.log(res.data.data);
+        
+        alert("登录成功！")
+        localStorage.setItem("token", res.data.data.token);
+        // 记录缓存已经登录信息
+        router.push('/admin/manage');
+      } else {
+        alert(res.data.message || "登录失败！")
       }
     }
   };

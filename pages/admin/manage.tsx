@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-
 const AdminPage: React.FC = (props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -17,16 +16,15 @@ const AdminPage: React.FC = (props) => {
 
   const handleAddArticle = () => {
     // 处理新增文章逻辑
-    console.log('新增文章:', title, content);
     // 跳转
     router.push('/admin/edit?isedit=add');
   };
 
-  const handleEditArticle = () => {
-    // 处理修改文章逻辑
-    console.log('修改文章:', title, content);
+  const handleListTo = () => {
+    // 处理文章列表逻辑
     // 跳转
-    router.push('/admin/edit?edit=isedit&id=1.');
+    // router.push('/admin/edit?edit=isedit&id=1');
+    router.push('/admin/list');
   };
 
   return (
@@ -36,7 +34,7 @@ const AdminPage: React.FC = (props) => {
         <button className="px-4 py-2 mx-2 text-white bg-pink-700 rounded" onClick={handleAddArticle}>
           新增文章
         </button>
-        <button className="px-4 py-2 mx-2 text-white bg-pink-700 rounded" onClick={handleEditArticle}>
+        <button className="px-4 py-2 mx-2 text-white bg-pink-700 rounded" onClick={handleListTo}>
           管理文章
         </button>
       </div>
