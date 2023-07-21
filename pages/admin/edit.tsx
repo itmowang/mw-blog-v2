@@ -20,13 +20,17 @@ const CreatePage: React.FC = (props) => {
     const result = await res.json();
     setCategories(result.data);
   };
-
+  const { isedit, id } = router.query;
   useEffect(() => {
     onLoad();
+    if(isedit=='edit'){
+      queryDetail()
+    }
   }, []);
   
-  const { isedit, id } = router.query;
+  const queryDetail = ()=>{
 
+  }
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
