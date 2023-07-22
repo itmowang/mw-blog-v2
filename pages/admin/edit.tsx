@@ -9,7 +9,6 @@ const CreatePage: React.FC = (props) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [cateId, setCateId] = useState('');
-
   // 获取url内参数
   const router = useRouter();
   // 请求接口获取分类数据
@@ -21,16 +20,25 @@ const CreatePage: React.FC = (props) => {
     setCategories(result.data);
   };
   const { isedit, id } = router.query;
+
+  const queryDetail = async () => {
+    const res = await axios.post('/api/post/getId', {
+      id: id
+    })
+
+    if (res.status == 200 && res.data.success) {
+      setTitle(res.data.data.title)
+      setContent(res.data.data.content)
+      setCateId(res.data.data.categoryId)
+    }
+  }
+
   useEffect(() => {
     onLoad();
-    if(isedit=='edit'){
+    if (isedit == 'edit') {
       queryDetail()
     }
-  }, []);
-  
-  const queryDetail = ()=>{
-
-  }
+  }, [isedit]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -40,24 +48,35 @@ const CreatePage: React.FC = (props) => {
     setContent(value);
   };
 
-  const handlePreview = () => {
-    console.log('预览标题:', title);
-    console.log('预览内容:', content);
-  };
 
-  const handleCreate = async () => {
-    // 处理创建逻辑
-    const res = await axios.post('/api/post/save', {
-      title: title,
-      content: content,
-      cateId: cateId,
-    })
-    if(res.status == 200 && res.data.success) {
-      alert('创建成功')
-      // 返回文章列表
-      router.push('/admin/manage')
-    }else{
-      alert(res.data.message)
+  const handleSubmit = async () => {
+    if (isedit == 'edit') {
+      // 处理编辑逻辑
+      const res = await axios.post('/api/post/updateSave', {
+        id: id,
+        title: title,
+        content: content,
+        cateId: cateId,
+      })
+      if (res.status == 200 && res.data.success) {
+        alert('修改成功')
+        // 返回文章列表
+        router.push('/admin/manage')
+      }
+    } else {
+      // 处理创建逻辑
+      const res = await axios.post('/api/post/save', {
+        title: title,
+        content: content,
+        cateId: cateId,
+      })
+      if (res.status == 200 && res.data.success) {
+        alert('创建成功')
+        // 返回文章列表
+        router.push('/admin/manage')
+      } else {
+        alert(res.data.message)
+      }
     }
   };
 
@@ -74,10 +93,10 @@ const CreatePage: React.FC = (props) => {
         />
         {/* 选择分类 */}
         <div className="mt-4">
-          <select className="px-4 py-2 text-gray-800 bg-white rounded w-full" 
-          onChange={(e) => {
-            setCateId(e.target.value);
-          }}
+          <select value={cateId} className="px-4 py-2 text-gray-800 bg-white rounded w-full"
+            onChange={(e) => {
+              setCateId(e.target.value);
+            }}
           >
             <option value="">请选择分类</option>
             {
@@ -106,10 +125,7 @@ const CreatePage: React.FC = (props) => {
           />
         </div>
 
-        <button className="px-4 py-2 mt-4 text-white bg-pink-700 rounded" onClick={handlePreview}>
-          预览
-        </button>
-        <button className="px-4 py-2 mt-4 text-white bg-pink-700 rounded" onClick={handleCreate}>
+        <button className="px-4 py-2 mt-4 text-white bg-pink-700 rounded" onClick={handleSubmit}>
           创建
         </button>
       </div>

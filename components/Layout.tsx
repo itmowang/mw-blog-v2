@@ -1,3 +1,5 @@
+import router from "next/router"
+
 interface SiteInfo {
     totalPages: number
     totalPosts: number
@@ -76,13 +78,17 @@ export const RecentPosts: React.FC<{
     info: Info
 }> = ({ info }) => {
     const { latestPosts } = info
+     // 跳转至内容页面
+     const toPost = (data) => {
+        router.push(`/p/${data.id}`)
+    }
     return (
         <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
             <p className="my-2">最近发表</p>
             {
                 latestPosts.map((item, index) => {
                     return (<div className="my-1" key={index}>
-                        <div className="indent-1 text-vase  text-neutral-500  hover:text-sky-500 cursor-pointer truncate">  {item.title}</div>
+                        <div className="indent-1 text-vase  text-neutral-500  hover:text-sky-500 cursor-pointer truncate" onClick={()=>toPost(item)}>  {item.title}</div>
                         {/* 分割线 */}
                         <div className=' w-full my px-4 mt-1' style={{ borderBottom: '1px solid #eee' }}></div>
                     </div>)
