@@ -1,0 +1,20 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/admin": "pages/admin.html",
+  "/admin/list": "pages/admin/list.html",
+  "/admin/manage": "pages/admin/manage.html",
+  "/api/appliction/getCategory": "pages/api/appliction/getCategory.js",
+  "/admin/edit": "pages/admin/edit.html",
+  "/api/login": "pages/api/login.js",
+  "/api/post/getId": "pages/api/post/getId.js",
+  "/api/post/list": "pages/api/post/list.js",
+  "/api/post/save": "pages/api/post/save.js",
+  "/api/post/updateSave": "pages/api/post/updateSave.js",
+  "/api/api": "pages/api/api.js",
+  "/p/[id]": "pages/p/[id].js",
+  "/cate/[cate]": "pages/cate/[cate].js",
+  "/": "pages/index.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
