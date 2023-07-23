@@ -9,7 +9,7 @@ import Footer from '../../components/Footer'
 // 引用分页
 import Pagination from '../../components/Pagination';
 // 其他
-import { LeftUserInfo, ContactInfo, RecentPosts, SiteInfo } from '../../components/Layout';
+import { LeftUserInfo, ContactInfo, RecentPosts, SiteInfo,Sponsor } from '../../components/Layout';
 // 引用api 
 import { getCommonData } from '../api/api'
 // 引用router
@@ -72,14 +72,12 @@ const Blog: React.FC<Props> = (props: InferGetServerSidePropsType<typeof getServ
         <Header categories={info.categories} />
         <div className=' p-2 bg-default flex w-full'>
             {/* 左侧显示 */}
-            <div className='w-1/4' >
+            <div className='w-1/4 leftMenu' >
                 <LeftUserInfo info={info} />
                 <ContactInfo info={info} />
                 <RecentPosts info={info} />
                 <SiteInfo info={info} />
-                <div className='bg-white shadow-lg rounded-lg p-4 mb-4 cursor-pointer'>
-                    服务器供应商：阿里云
-                </div>
+               <Sponsor />
             </div>
             {/* 列表 */}
             <div className='w-full ml-4 '>

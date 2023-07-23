@@ -28,13 +28,13 @@ const AdminPage: React.FC = (props) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-500">
-      <h1 className="text-4xl font-bold text-white">管理页面</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-300">
+      <h1 className="text-4xl font-bold text-white">管理中心</h1>
       <div className="flex justify-center mt-8">
-        <button className="px-4 py-2 mx-2 text-white bg-pink-700 rounded" onClick={handleAddArticle}>
+        <button className="px-4 py-2 mx-2 text-white bg-sky-500 rounded transition ease-in-out delay-150  hover:bg-sky-400" onClick={handleAddArticle}>
           新增文章
         </button>
-        <button className="px-4 py-2 mx-2 text-white bg-pink-700 rounded" onClick={handleListTo}>
+        <button className="px-4 py-2 mx-2 text-white bg-sky-500 rounded transition ease-in-out delay-150 hover:bg-sky-400" onClick={handleListTo}>
           管理文章
         </button>
       </div>

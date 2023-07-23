@@ -38,7 +38,7 @@ const AdminPage: React.FC = (props) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-pink-500 p-8">
+    <div className="flex flex-col min-h-screen  bg-pink-300 p-8">
       <h1 className="text-4xl font-bold text-white">管理文章</h1>
       <div className="mt-8">
         {postList.map((article) => (

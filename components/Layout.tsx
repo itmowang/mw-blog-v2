@@ -27,7 +27,7 @@ export const LeftUserInfo: React.FC<{
 }> = ({ info }) => {
     const { siteInfo } = info
     return (
-        <div className="h-32 bg-white shadow-lg rounded-lg p-4 mb-4 flex items-center w-full">
+        <div className="userInfo h-32 bg-white shadow-lg rounded-lg p-4 mb-4 flex items-center w-full">
             {/* 用户头像 */}
             <div className="w-24 h-24">
                 <img src={'https://www.wdssmq.com/zb_users/avatar/1.png'} className="w-24 h-24" />
@@ -58,7 +58,7 @@ export const ContactInfo: React.FC<{
     info: Info
 }> = ({ info }) => {
     return (
-        <div className="bg-white shadow-lg rounded-lg p-4 mb-4 ">
+        <div className="contactInfo bg-white shadow-lg rounded-lg p-4 mb-4 ">
             <div className="text-sm text-gray-500 font-bold hover:text-sky-500 cursor-pointer truncate"> <i className="iconfont icon-QQ text-sky-500	" ></i> 1531780018</div>
             {/* 分割线 */}
             <div className=' w-full my-2 px-4 ' style={{ borderBottom: '1px solid #eee' }}></div>
@@ -78,17 +78,17 @@ export const RecentPosts: React.FC<{
     info: Info
 }> = ({ info }) => {
     const { latestPosts } = info
-     // 跳转至内容页面
-     const toPost = (data) => {
+    // 跳转至内容页面
+    const toPost = (data) => {
         router.push(`/p/${data.id}`)
     }
     return (
-        <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+        <div className="recentPosts bg-white shadow-lg rounded-lg p-4 mb-4">
             <p className="my-2">最近发表</p>
             {
                 latestPosts.map((item, index) => {
                     return (<div className="my-1" key={index}>
-                        <div className="indent-1 text-vase  text-neutral-500  hover:text-sky-500 cursor-pointer truncate" onClick={()=>toPost(item)}>  {item.title}</div>
+                        <div className="indent-1 text-vase  text-neutral-500  hover:text-sky-500 cursor-pointer truncate" onClick={() => toPost(item)}>  {item.title}</div>
                         {/* 分割线 */}
                         <div className=' w-full my px-4 mt-1' style={{ borderBottom: '1px solid #eee' }}></div>
                     </div>)
@@ -101,10 +101,10 @@ export const RecentPosts: React.FC<{
 // 站点信息
 export const SiteInfo: React.FC<{
     info: Info
-}> = ({info}) => {
+}> = ({ info }) => {
     const { siteInfo } = info
     return (
-        <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+        <div className="siteInfo bg-white shadow-lg rounded-lg p-4 mb-4">
             <p className="my-2">站点信息</p>
             {
                 <div className="my-1" >
@@ -125,6 +125,16 @@ export const SiteInfo: React.FC<{
                     </div>
                 </div>
             }
+        </div>
+    )
+}
+
+// 赞助商
+export const Sponsor: React.FC<{
+}> = ({ }) => {
+    return (
+        <div className='sponsor bg-white shadow-lg rounded-lg p-4 mb-4 cursor-pointer'>
+            服务器供应商：阿里云
         </div>
     )
 }

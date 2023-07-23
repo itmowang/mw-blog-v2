@@ -81,7 +81,7 @@ const CreatePage: React.FC = (props) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center bg-pink-500 p-6">
+    <div className="flex flex-col min-h-screen items-center bg-pink-300 p-6">
       <h1 className="text-4xl font-bold text-white">{isedit == 'add' ? '创建文章' : "修改文章"}</h1>
       <div className="mt-8 w-1/2">
         <input

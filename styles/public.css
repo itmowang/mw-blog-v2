@@ -1,0 +1,40 @@
+ /* 手机屏幕 */
+ @media screen and (max-width: 767px) {
+    .userInfo{
+       display: none;
+    }
+    .contactInfo{
+        display: none;
+    }
+    .recentPosts{
+        display: none;
+    }
+    .siteInfo{
+        display: none;
+    }
+    .sponsor{
+        display: none;
+    }
+    .leftMenu{
+        display: none;
+    }
+    .topNav-pc{
+        display: none;
+    }
+    .topNav-mobie{
+        display: block;
+    }
+ }
+
+
+ /* 小屏幕（平板，大于等于 768px） */
+ @media (min-width: 768px) {
+   .topNav-mobile{
+         display: none;
+   }
+ }
+
+ /* 中等屏幕（桌面显示器，大于等于 992px） */
+ /* @media (min-width:992px) {
+   
+ } */
