@@ -9,7 +9,7 @@
     "dbInit": "npx prisma migrate dev --name init",
     "csswatch": "tailwindcss -o ./styles/tailwind.css --watch",
     "studio": "npx prisma studio",
-    "build": "next build",
+    "build": "next build ",
     "start": "next start",
     "lint": "next lint"
   },
